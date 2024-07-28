@@ -154,6 +154,7 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bul
         # Reset the game statistics.
         stats.reset_stats()
         stats.game_active = True
+        ai_settings.initialize_dynamic_settings()
 
         # Empty the list of aliens and bullets.
         aliens.empty()
@@ -195,7 +196,7 @@ def check_keyup_events(event, ship):
         ship.moving_left = False
 
 
-def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
+def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button):
     """Update images on the screen and flip to the new screen."""
     # Redraw the screen during each pass through the loop.
     for bullet in bullets.sprites():
@@ -203,6 +204,9 @@ def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button
     screen.fill(ai_settings.bg_color)
     ship.blitme()
     aliens.draw(screen)
+
+    # Draw the score information.
+    sb.show_score()
 
     # Draw the play button if the game is inactive.
     if not stats.game_active:

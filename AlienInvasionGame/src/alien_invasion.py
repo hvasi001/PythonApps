@@ -8,6 +8,7 @@ from ship import Ship
 import game_functions as gf
 from alien import Alien
 from button import Button
+from scoreboard import Scoreboard
 
 
 def run_game():
@@ -21,8 +22,9 @@ def run_game():
     # Make the Play button.
     play_button = Button(ai_settings, screen, "Play")
 
-    # Create an instance to store game statistics.
+    # Create an instance to store game statistics and create a scoreboard.
     stats = GameStats(ai_settings)
+    sb = Scoreboard(ai_settings, screen, stats)
 
     # Make a ship.
     ship = Ship(ai_settings, screen)
@@ -46,7 +48,7 @@ def run_game():
             gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 
-        gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
+        gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button)
 
         # Get rid of bullets that have disappeared.f
         for bullet in bullets.copy():
@@ -54,7 +56,7 @@ def run_game():
                 bullets.remove(bullet)
         print(len(bullets))
 
-        gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
+        gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button)
         # Watch for keyboard and mouse events.
         #  ffoghu
         for event in pygame.event.get():
