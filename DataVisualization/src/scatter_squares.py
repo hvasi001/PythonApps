@@ -11,7 +11,7 @@ plt.xlabel("Value", fontsize=14)
 plt.ylabel("Square of Value", fontsize=14)
 
 # Set the range for each axis.
-plt.axis([0, 1100, 0, 1100000])
+plt.axis((0, 1100, 0, 1100000))
 
 # Set size of tick labels.
 plt.tick_params(axis='both', which='major', labelsize=14)
