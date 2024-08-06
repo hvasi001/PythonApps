@@ -1,0 +1,5 @@
+Hello, World!
+This is a file writing example.
+Python makes file handling easy.
+Appending a new line.
+Adding another line.
